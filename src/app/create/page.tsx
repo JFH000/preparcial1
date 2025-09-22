@@ -1,5 +1,5 @@
 "use client";
-import AuthorForm from "@/components/AuthorForm";
+import AuthorForm from "@/components/authors/AuthorForm";
 import { useAuthors } from "@/hooks/useAuthors";
 import { useRouter } from "next/navigation";
 

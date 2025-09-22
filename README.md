@@ -1,36 +1,29 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+1. Arquitectura de la solución (5%)
 
-## Getting Started
+Para la nueva funcionalidad se añadió la carpeta /favorites dentro de src/app/ para que existiera el endpoint. Todos los endpoints usados estan usando un Context que a su vez utiliza un hook que permite guardar información siempre y cuando no se recargue. Para guardar los favoritos se utilizó este Context añadiendole la caracteristica de .favorite a un autor si se marcaba como favorito.
 
-First, run the development server:
+2. Parte B: Opción seleccionada y validación (5%)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Se seleccionó pruebas
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Los tests simulan cómo un usuario real interactuaría con el formulario para crear un usuario. Usamos @testing-library/react para renderizar el componente y luego buscar elementos en el DOM a través de sus etiquetas. Después, con fireEvent disparamos acciones como escribir en los campos o hacer clic en el botón. Se usaron assertions (expect(...)) para verificar el comportamiento esperado: que los campos existan, que el botón esté deshabilitado cuando falta información o que la función onSubmit reciba los datos correctos al enviar el formulario.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+pruebas:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. verifica que todos los campos requeridos (nombre, fecha de nacimiento, URL de la imagen y descripción) se rendericen correctamente y estén disponibles para interacción.
+2. valida el comportamiento al intentar enviar el formulario con los campos vacíos, confirmando que el botón de envío permanece deshabilitado y que no se permite crear un autor en esas condiciones.
+3. simula el llenado correcto de todos los campos y confirma que el evento onSubmit se dispare con los datos ingresados, garantizando así el flujo esperado de creación de un nuevo autor.
 
-## Learn More
+4. Instrucciones para correr la app y pruebas (5%)
 
-To learn more about Next.js, take a look at the following resources:
+se debe tener instalado node
+instalar dependencias: npm i
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Correr: npm run dev
+navegar a localhost:3000 para utilizar el front
+hay una navbar con botones que maneja las rutas
+de primeras se ve la lista de autores con un boton para marcar como favorito
+si se marcan algunos como favoritos y luego se preciona en el boton de favorites, estos se verán listados
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Correr: npm test
+para correr las pruebas

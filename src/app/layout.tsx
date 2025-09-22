@@ -1,4 +1,5 @@
 import NavBar from "@/components/Navbar";
+import { AuthorsProvider } from "@/context/AuthorContext";
 import "./globals.css";
 
 export default function RootLayout({
@@ -10,7 +11,9 @@ export default function RootLayout({
     <html lang="es">
       <body className="bg-primary-foreground">
         <NavBar />
-        <main className="p-6">{children}</main>
+        <AuthorsProvider>
+          <main className="p-6">{children}</main>
+        </AuthorsProvider>
       </body>
     </html>
   );

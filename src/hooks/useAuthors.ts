@@ -18,7 +18,11 @@ export function useAuthors() {
   async function loadAuthors() {
     setLoading(true);
     const data = await getAuthors();
-    setAuthors(data);
+
+    // Iniciamos con todos sin favorito
+    const withFavorites = data.map((a: any) => ({ ...a, favorite: false }));
+
+    setAuthors(withFavorites);
     setLoading(false);
   }
 
@@ -37,5 +41,21 @@ export function useAuthors() {
     setAuthors(authors.filter((a) => a.id !== id));
   }
 
-  return { authors, loading, addAuthor, editAuthor, removeAuthor };
+  function setFavorite(id: number) {
+    setAuthors((prev) =>
+      prev.map((a) => (a.id === id ? { ...a, favorite: !a.favorite } : a))
+    );
+  }
+
+  const favorites = authors.filter((a) => a.favorite);
+
+  return {
+    authors,
+    loading,
+    addAuthor,
+    editAuthor,
+    removeAuthor,
+    setFavorite,
+    favorites,
+  };
 }

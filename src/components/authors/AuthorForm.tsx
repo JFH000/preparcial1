@@ -8,6 +8,7 @@ import { useState } from "react";
 
 export default function AuthorForm({ initialData = null, onSubmit }: any) {
   const today = new Date().toISOString().split("T")[0];
+  // const { addAuthor } = useAuthors();
 
   const [form, setForm] = useState({
     name: initialData?.name || "",
@@ -23,6 +24,7 @@ export default function AuthorForm({ initialData = null, onSubmit }: any) {
   function handleSubmit(e: any) {
     e.preventDefault();
     onSubmit(form);
+    // addAuthor(form);
   }
 
   return (
@@ -33,27 +35,36 @@ export default function AuthorForm({ initialData = null, onSubmit }: any) {
             name="name"
             value={form.name}
             onChange={handleChange}
-            placeholder="Name"
+            label="Nombre"
           />
+
           <Input
             type="date"
             name="birthDate"
             value={form.birthDate}
             onChange={handleChange}
+            label="Fecha de nacimiento"
           />
+
           <Input
             name="image"
             value={form.image}
             onChange={handleChange}
-            placeholder="URL de la imagen"
+            label="URL de la imagen"
           />
+
           <Textarea
             name="description"
             value={form.description}
             onChange={handleChange}
-            placeholder="Descripción"
+            label="Descripción"
           />
-          <Button type="submit" className="w-full">
+
+          <Button
+            type="submit"
+            className="w-full"
+            disabled={!form.name.trim() || !form.description.trim()}
+          >
             {initialData ? "Actualizar" : "Crear"}
           </Button>
         </form>

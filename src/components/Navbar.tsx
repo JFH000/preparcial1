@@ -12,6 +12,9 @@ export default function NavBar() {
         <Link href="/create">
           <Button>Create Author</Button>
         </Link>
+        <Link href="/favoritos">
+          <Button>Favorite Authors</Button>
+        </Link>
       </div>
     </nav>
   );
